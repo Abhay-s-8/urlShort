@@ -1,0 +1,8 @@
+url to short karna hain
+and also do analysis for the upcoming url
+
+post/ create new url
+
+get/:id redirect to url given
+
+get/analysis/:id  give analysis on given url
