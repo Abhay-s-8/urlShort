@@ -4,7 +4,7 @@ const { createShortUrl, getshortIDdata, getAnalysis } = require('../controllers/
 const router = express.Router();
 
 
-router.post('/url', createShortUrl);
+router.post('/', createShortUrl);
 router.get('/:shortId',getshortIDdata);
 router.get('/analysis/:shortId',getAnalysis);
 module.exports = router;

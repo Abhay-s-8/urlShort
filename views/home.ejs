@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>urlShortener</title>
+  </head>
+  <body>
+    <h1>URL SHORTENER</h1>
+    <% if(locals.shortid){%>
+        <p>url generated : http://localhost:3001/<%= shortid  %></p>
+    <%} %>
+    <% if (locals.f) { %>
+    <p>Redirect URL required</p>
+    <% } %>
+
+    <form method="POST" action="/">
+      <label>Enter url (main url):</label>
+      <input type="text" name="Url" placeholder="https://www.example.com" />
+      <label>Enter the Size : </label>
+      <input type="number" name="lengthWanted1" placeholder="example : 2" />
+      <button type="submit">Generate urls</button>
+    </form>
+    <% if (locals.data) { %>
+        <table>
+            <thead>
+                <th>s.no</th>
+                <th>ShortID</th>
+                <th>redirectURL</th>
+                <th>visits</th>
+            </thead>
+            <tbody>
+                <% data.forEach((urls,index) => { %>
+        <tr>
+      <td><%= index + 1 %></td>
+      <td> http://localhost:3001/<%= urls.shortUrl %></td>
+      <td><%= urls.redirectUrl %></td>
+      <td><%= urls.clicks.length %></td>
+      </tr>
+     <% }) %>
+            </tbody>
+        </table>
+     
+    <% } %>
+
+  </body>
+</html>
