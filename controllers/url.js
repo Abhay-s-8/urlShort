@@ -46,4 +46,11 @@ async function getAnalysis(req, res) {
     .status(202)
     .json({ total_clicks: result.clicks.length, analysis: `${result.clicks}` });
 }
-module.exports = { createShortUrl, getshortIDdata, getAnalysis };
+
+async function deleteID(req,res){
+    const body = req.body;
+    const short = body.shortUrl;
+    const user = user1.findOneAndDelete({shortUrl : short});
+    res.render("home");
+}
+module.exports = { createShortUrl, getshortIDdata, getAnalysis ,deleteID };

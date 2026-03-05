@@ -3,6 +3,7 @@ const connectToDatabase = require('./connection');
 const routeUser = require("./route/route")
 const path = require("path");
 const staticRouter = require("./route/staticRouter");
+const user = require("./models/user")
 const port = 3001;
 
 const app = express();
