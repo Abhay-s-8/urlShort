@@ -3,7 +3,7 @@ const connectToDatabase = require('./connection');
 const routeUser = require("./route/route")
 const path = require("path");
 const staticRouter = require("./route/staticRouter");
-const user = require("./models/user")
+const user = require("./route/user")
 const port = 3001;
 
 const app = express();
@@ -18,6 +18,7 @@ app.set("views", path.resolve("./views"));
 
 app.use("/",routeUser);
 app.use("/",staticRouter);
+app.use("/",user); 
 
 // app.get("/home", async (req,res)=>{
 //     const url1 = await req.body;
