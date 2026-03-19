@@ -48,9 +48,9 @@ async function getAnalysis(req, res) {
 }
 
 async function deleteID(req,res){
-    const body = req.body;
-    const short = body.shortUrl;
-    const user = user1.findOneAndDelete({shortUrl : short});
-    res.render("home");
+    const body = req.body.shortUrl;
+    
+    user1.findOneAndDelete({shortUrl : body});
+    res.redirect("home");
 }
 module.exports = { createShortUrl, getshortIDdata, getAnalysis ,deleteID };

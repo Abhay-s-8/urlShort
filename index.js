@@ -1,24 +1,31 @@
 const express = require('express');
 const connectToDatabase = require('./connection');
-const routeUser = require("./route/route")
+const cookieparse = require("cookie-parser");
 const path = require("path");
-const staticRouter = require("./route/staticRouter");
-const user = require("./route/user")
+const {restrictToLoggedInUserOnly} = require("./middleware/auth");
 const port = 3001;
 
 const app = express();
+//routes
+const routeUser = require("./route/route")
+const staticRouter = require("./route/staticRouter");
+const user = require("./route/user")
 
-
+//connection
 connectToDatabase("mongodb://localhost:27017/urlShortener");
+//data reader
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-
-app.set("view engine", "ejs" );
+app.use(cookieparse());
+//setting ejs
+app.set("view engine","ejs");
 app.set("views", path.resolve("./views"));
 
-app.use("/",routeUser);
+//route allotment
+
 app.use("/",staticRouter);
-app.use("/",user); 
+app.use("/url",routeUser);
+app.use("/user",user); 
 
 // app.get("/home", async (req,res)=>{
 //     const url1 = await req.body;
@@ -26,8 +33,6 @@ app.use("/",user);
 //     urls:url1,
 // });
 // })
-
-
 
 app.listen(port,()=>{
     try{

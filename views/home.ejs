@@ -34,6 +34,7 @@
                 <th>ShortID</th>
                 <th>redirectURL</th>
                 <th>visits</th>
+                <th>delete</th>
             </thead>
             <tbody>
                 <% data.forEach((urls,index) => { %>
@@ -42,6 +43,11 @@
       <td> http://localhost:3001/<%= urls.shortUrl %></td>
       <td><%= urls.redirectUrl %></td>
       <td><%= urls.clicks.length %></td>
+      <td><form method="POST" action="/delete">
+    <input type="hidden" name="shortUrl" value="<%= urls.shortUrl %>">
+    <button type="submit">X</button>
+</form>
+      </td>
       </tr>
      <% }) %>
             </tbody>
