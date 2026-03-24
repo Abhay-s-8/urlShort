@@ -6,6 +6,10 @@ const urlSchems = new mongoose.Schema(
     redirectUrl: { type: String, required: true },
     clicks: [{ Timestamp: { type: Number } }],
     lengthWanted: { type: Number, required: true },
+        createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+    }
   },
   { timestamps: true },
 );

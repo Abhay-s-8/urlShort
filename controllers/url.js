@@ -15,6 +15,7 @@ async function createShortUrl(req, res) {
       redirectUrl: details.Url.trim(),
       lengthWanted: details.lengthWanted1,
       clicks: [],
+      createdBy: req.user._id ,
     });
 
     

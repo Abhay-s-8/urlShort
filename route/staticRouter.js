@@ -3,8 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 router.get('/',async (req,res)=>{
+if(!req.user) return res.redirect("/login");
 
-    const id = await user1.find({})
+    const id = await user1.find({createdBy: req.user._id})
     res.render("home",{
         data : id,
     });

@@ -2,7 +2,7 @@ const express = require('express');
 const connectToDatabase = require('./connection');
 const cookieparse = require("cookie-parser");
 const path = require("path");
-const {restrictToLoggedInUserOnly} = require("./middleware/auth");
+const {restrictToLoggedInUserOnly,checkAuth} = require("./middleware/auth");
 const port = 3001;
 
 const app = express();
@@ -23,9 +23,9 @@ app.set("views", path.resolve("./views"));
 
 //route allotment
 
-app.use("/",staticRouter);
-app.use("/url",routeUser);
-app.use("/user",user); 
+app.use("/",checkAuth,staticRouter);
+app.use("/url",restrictToLoggedInUserOnly,routeUser);
+app.use("/user",user);
 
 // app.get("/home", async (req,res)=>{
 //     const url1 = await req.body;
