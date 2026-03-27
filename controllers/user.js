@@ -3,7 +3,7 @@ const user1 = require("../models/user");
 const { setUser, getUser } = require("../service/auth");
 async function createUser(req, res) {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password ,role} = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).send("<p>Fill data correctly</p>");
@@ -13,7 +13,7 @@ async function createUser(req, res) {
       name,
       email,
       password,
-      
+      role,
     });
 
     res.render("home");
@@ -48,8 +48,8 @@ async function userLogin(req, res) {
     console.log("DB user:", member);
     
     const token =  setUser( member);
-    res.json({token});
-res.redirect("/");
+    res.cookie("token", token);
+    res.redirect("/");
   } catch (err) {
     console.log(err);
     res.status(500).send("Server error");

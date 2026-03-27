@@ -2,7 +2,7 @@ const express = require('express');
 const connectToDatabase = require('./connection');
 const cookieparse = require("cookie-parser");
 const path = require("path");
-const {restrictToLoggedInUserOnly,checkAuth} = require("./middleware/auth");
+const {restrictToLoggedInUserOnly,ristrictTo} = require("./middleware/auth");
 const port = 3001;
 
 const app = express();
@@ -17,14 +17,15 @@ connectToDatabase("mongodb://localhost:27017/urlShortener");
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieparse());
+app.use(restrictToLoggedInUserOnly);
 //setting ejs
 app.set("view engine","ejs");
 app.set("views", path.resolve("./views"));
 
 //route allotment
 
-app.use("/",checkAuth,staticRouter);
-app.use("/url",restrictToLoggedInUserOnly,routeUser);
+app.use("/",staticRouter);
+app.use("/url",ristrictTo(["NORMAL","ADMIN"]),routeUser);
 app.use("/user",user);
 
 // app.get("/home", async (req,res)=>{

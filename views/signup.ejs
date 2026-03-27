@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>signup</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>SIGN-UP</h1>
     <form method="POST" action="/user">
-        <label>name</label>
-        <input type="text" name="name" >
-        <label>email</label>
-        <input type="text" name="email">
-        <label>Password</label>
-        <input type="password" name="password" >
-        <button type="submit" >Sign-up</button>
+      <label>name</label>
+      <input type="text" name="name" />
+      <label>email</label>
+      <input type="text" name="email" />
+      <label>Password</label>
+      <input type="password" name="password" />
+      <label>Role :</label>
+      <select name="role">
+        <option value="NORMAL" selected>NORMAL</option>
+        <option value="ADMIN">ADMIN</option>
+      </select>
+      <button type="submit">Sign-up</button>
     </form>
-</body>
+  </body>
 </html>
